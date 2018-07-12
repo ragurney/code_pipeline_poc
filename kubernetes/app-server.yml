@@ -1,0 +1,56 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: code-pipeline-poc
+  labels:
+    project: code-pipeline-poc
+    role: app-server
+    team: bre
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      project: code-pipeline-poc
+      role: app-server
+  template:
+    metadata:
+      name: code-pipeline-poc-server
+      labels:
+        project: code-pipeline-poc
+        role: app-server
+        team: bre
+      annotations:
+        samson/required_env: >
+          RAILS_ENV
+    spec:
+      containers:
+      - name: default
+        image: gcr.io/docker-image-builder-179319/code_pipeline_poc:latest
+        resources:
+          limits:
+            cpu: '0.5'
+            memory: '100Mi'
+        ports:
+        - name: main
+          containerPort: 3000
+          protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: code-pipeline-poc
+  labels:
+    project: code-pipeline-poc
+    role: app-server
+    team: bre
+    proxy: enabled
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: main
+  selector:
+    project: code-pipeline-poc
+    role: app-server
