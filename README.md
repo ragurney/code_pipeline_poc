@@ -20,3 +20,7 @@ Things you may want to cover:
 * Deploy.md
 
 * new test
+a
+ding
+1
+ping
