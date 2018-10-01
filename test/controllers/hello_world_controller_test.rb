@@ -7,6 +7,7 @@ class HelloWorldControllerTest < ActionDispatch::IntegrationTest
 
   test "index" do
     get root_path
+    puts 'foo bar master'
     assert_equal "/", path
   end
 end
