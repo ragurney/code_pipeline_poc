@@ -20,3 +20,17 @@ Things you may want to cover:
 * Deploy.md
 
 * new test
+a
+ding
+1
+ping
+
+master
+
+stuff more stuff
+
+slave
+
+stuffy stuff stuff
+
+ding stuff
